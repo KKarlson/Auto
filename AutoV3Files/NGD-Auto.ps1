@@ -42,7 +42,7 @@ powercfg -change -standby-timeout-ac 43200
 powercfg -change -monitor-timeout-ac 43200
 
 # Sets location to run everything.
-Set-Location 'C:\TECH\NGD-Auto\'
+Set-Location 'C:\TECH\Auto-main\'
 
 # Set the error action preference to stop
 #$ErrorActionPreference = "Stop"
