@@ -41,11 +41,6 @@ powercfg -change -standby-timeout-ac 43200
 # The time is specified in seconds, so 12 hours is 43200 seconds
 powercfg -change -monitor-timeout-ac 43200
 
-# If older files are in C:\TECH\NGD-Auto it deletes them
-if (Test-Path c:\TECH\NGD-Auto\) {
-Remove-Item c:\Tech\NGD-Auto\ -Recurse -Force
-}
-
 # Sets location to run everything.
 Set-Location 'C:\TECH\NGD-Auto\'
 
