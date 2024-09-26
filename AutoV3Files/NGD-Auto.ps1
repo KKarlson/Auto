@@ -56,7 +56,7 @@ Set-Location 'C:\TECH\NGD-Auto\'
 $ConfirmPreference = 'None'
 
 # Runs second script to collect Windows autopilot hash file.
-Set-Location '.\AutoV2Files'
+Set-Location '.\AutoV3Files'
 $hashScript = Resolve-Path '.\Register-AutoPilotDevice.ps1'
 & $hashScript
 Set-Location '.\..'
@@ -65,13 +65,13 @@ Set-Location '.\..'
 Get-ChildItem -Path 'd:\' -Filter *.csv | Remove-Item
 
 # Copy all CSV files in current directory to parent directory
-Get-ChildItem -Path 'C:\tech\NGD-Auto\AutoV2Files' -Filter *.csv | Copy-Item -Destination 'd:\'
+Get-ChildItem -Path 'C:\tech\Auto-main\AutoV3Files' -Filter *.csv | Copy-Item -Destination 'd:\'
 
 # Checks for hash file on flash drive and lets the user know they can remove the flash drive if the hash file is there
 if (Test-Path 'd:\*.csv') {
     Show-MessageBox -Message "You can now remove your flash"
 } else {
-    Show-MessageBox -Message "ERROR: The hash file is not on the D drive, make sure the flash drive partition you are using is labeled as D"
+    Show-MessageBox -Message "ERROR moving hash file to drive leter D, make sure the flash drive partition you are using is labeled as D"
 }
 
 # Makes it so you are not asked to confirm if you want to install a module or provider
@@ -120,7 +120,7 @@ if ((-not (Test-Path C:\Windows\System32\reRun.txt)) -and ($maker -ne ("LENOVO" 
         $dcuPath = "C:\Program Files\Dell\CommandUpdate\dcu-cli.exe"
         if (-not (Test-Path $dcuPath)) {
             Write-Host "Installing DCU"
-            Start-Process "C:\Windows\System32\msiexec.exe" -argumentlist '/i "C:\TECH\NGD-Auto\AutoV2Files\DCU\DCU.msi" /quiet /norestart' -NoNewWindow -Wait
+            Start-Process "C:\Windows\System32\msiexec.exe" -argumentlist '/i "C:\TECH\Auto-main\AutoV3Files\DCU\DCU.msi" /quiet /norestart' -NoNewWindow -Wait
             Write-Host "Installed DCU"
         }
         & $dcuPath "/scan"
